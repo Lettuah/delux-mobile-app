@@ -1,5 +1,5 @@
 import 'package:delux/routes.dart';
-import 'package:delux/views/home_screen.dart';
+import 'package:delux/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeScreen(), // Default home screen
-      getPages: Routes.getRoutes(),
+      home: const SplashScreen(), // Default home screen
+      getPages: AppRoutes.getRoutes(),
       debugShowCheckedModeBanner: false,
     );
   }

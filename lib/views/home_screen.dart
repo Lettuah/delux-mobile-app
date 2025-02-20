@@ -1,16 +1,29 @@
+import 'dart:async';
+
+import 'package:delux/widgets/custom_elevated_button.dart';
+import 'package:delux/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final TextStyle headStyle = GoogleFonts.robotoCondensed(
     fontSize: 40,
     color: Colors.white,
   );
+
   final PageController _pageController = PageController();
+  final PageController _autoPageController = PageController();
+
   final List<String> imageSliders = [
     'assets/img/1.jpg',
     'assets/img/2.jpg',
@@ -21,6 +34,58 @@ class HomeScreen extends StatelessWidget {
     'assets/img/7.jpg',
     'assets/img/9.jpg',
   ];
+
+  late final List<Widget> headings = [
+    _headingContainer('Earning', 'From', 'The Internet', 'While', 'Sitting'),
+    _headingContainer('Smart Ways', 'To Make', 'Money', 'From', 'Home'),
+    _headingContainer('Work', 'From', 'Anywhere,', 'Earn', 'Everywhere'),
+    _headingContainer('Get Paid', 'Without', 'Leaving', 'Your', 'Couch'),
+    _headingContainer('Unlock', 'Passive', 'Income', 'Streams', 'Online'),
+  ];
+  int _currentPage = 0;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _startAutoSlide();
+  }
+
+  void _startAutoSlide() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      if (_currentPage < headings.length - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+      _autoPageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void _showCenterModal(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+
+          content: _dialogContent(),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _autoPageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,54 +100,7 @@ class HomeScreen extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        drawer: Drawer(
-          backgroundColor: Colors.black,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              Container(
-                decoration: const BoxDecoration(),
-                child: Image.asset('assets/img/logo1.png', height: 150),
-              ),
-              ListTile(
-                leading: const Icon(
-                  FontAwesomeIcons.house,
-                  color: Colors.white,
-                ),
-                title: const Text(
-                  'Home',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () => Navigator.pop(context),
-              ),
-              ListTile(
-                leading: const Icon(
-                  FontAwesomeIcons.circleInfo,
-                  color: Colors.white,
-                ),
-                title: const Text(
-                  'Learn More',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () => Navigator.pop(context),
-              ),
-
-              const SizedBox(
-                height: 500,
-              ), // Adjust height as needed to push content up
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    '© ${DateTime.now().year} Delux Inc.',
-                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        drawer: const MyDrawer(),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -90,86 +108,17 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        'assets/img/logo1.png',
-                        height: 120,
-                        alignment: Alignment.centerLeft,
-                      ),
-                      Builder(
-                        builder:
-                            (context) => GestureDetector(
-                              onTap: () => Scaffold.of(context).openDrawer(),
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(Icons.menu),
-                              ),
-                            ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Earning',
-                          style: GoogleFonts.outfit(
-                            fontSize: 40,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                  _headerRow(),
 
-                        Text.rich(
-                          TextSpan(
-                            text: 'From',
-                            children: const [
-                              TextSpan(
-                                text: ' The Internet',
-                                style: TextStyle(
-                                  color: Colors.amber,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                            style: GoogleFonts.roboto(
-                              fontSize: 40,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-
-                        Row(
-                          children: [
-                            Text(
-                              'While',
-                              style: GoogleFonts.roboto(
-                                fontSize: 40,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(width: 20),
-                            Text(
-                              'Sitting',
-                              style: GoogleFonts.outfit(
-                                fontSize: 40,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                  SizedBox(
+                    height: 130,
+                    child: PageView(
+                      controller: _autoPageController,
+                      children: headings,
                     ),
                   ),
 
+                  // const SizedBox(height: 20),
                   SizedBox(
                     height: 400,
                     child: PageView.builder(
@@ -230,7 +179,19 @@ class HomeScreen extends StatelessWidget {
                           style: GoogleFonts.robotoFlex(color: Colors.white),
                         ),
                         const SizedBox(height: 20),
-                        _buildElevatedBtn('Register Now'),
+                        CustomElevatedButton(
+                          buttonTitle: 'Register Now',
+                          onClick: () {
+                            _showCenterModal(context);
+                            // Get.defaultDialog(
+                            //   title: '',
+                            //   titlePadding: const EdgeInsets.all(0),
+                            //   backgroundColor: Colors.black,
+                            //   content: _dialogContent(),
+                            //   contentPadding: const EdgeInsets.all(20),
+                            // );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -275,10 +236,27 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        const Text(
-                          "At Delux 🎨, we're harnessing creativity to build a new wave of millionaires 💵 and billionaires 🏦. Our mission is to make you happy 😊 and financially stable 💰. We keep the spirit of networking alive 🌐, setting the right standards ✅ and breaking boundaries 🌍. Explore our mouth-watering features 🍽️, accessible to all African countries 🌎.",
-                          style: TextStyle(color: Colors.white),
+                        const Text.rich(
+                          TextSpan(
+                            text: 'At ',
+                            children: [
+                              TextSpan(
+                                text: 'Delux 🎨',
+                                style: TextStyle(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              TextSpan(
+                                text:
+                                    ", we're harnessing creativity to build a new wave of millionaires 💵 and billionaires 🏦. Our mission is to make you happy 😊 and financially stable 💰. We keep the spirit of networking alive 🌐, setting the right standards ✅ and breaking boundaries 🌍. Explore our mouth-watering features 🍽️, accessible to all African countries 🌎.",
+                              ),
+                            ],
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
+
                         const SizedBox(height: 20),
                         _buildElevatedBtn('How it works'),
                       ],
@@ -314,7 +292,7 @@ class HomeScreen extends StatelessWidget {
                         Image.asset('assets/img/logo1.png', height: 150),
                         const Text(
                           'All rights reserved',
-                          style: TextStyle(color: Colors.white, height: -5),
+                          style: TextStyle(color: Colors.white, height: -6),
                         ),
                       ],
                     ),
@@ -324,6 +302,185 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  SizedBox _dialogContent() {
+    return SizedBox(
+      height: 311,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Row(
+                  children: [
+                    Icon(Icons.close, color: Colors.red.shade500),
+                    Text('Close', style: TextStyle(color: Colors.red.shade500)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const Divider(color: Colors.white, thickness: 0.5),
+          const Text(
+            'Get Registered Now!',
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+          const SizedBox(height: 10),
+          const Text.rich(
+            TextSpan(
+              text: 'Chat with our ',
+              children: [
+                TextSpan(
+                  text: 'Verified Agent',
+                  style: TextStyle(color: Colors.amber),
+                ),
+                TextSpan(text: ' on Telegram to register for Delux'),
+              ],
+            ),
+
+            style: TextStyle(color: Colors.white),
+          ),
+          const SizedBox(height: 10),
+          CustomElevatedButton(
+            textColor: Colors.black,
+            buttonColor: Colors.amber,
+            buttonTitle: "Click Here Now",
+            onClick: () {},
+          ),
+          const SizedBox(height: 10),
+          const Text.rich(
+            TextSpan(
+              text: 'Join our verified social handles to learn more about how ',
+              children: [
+                TextSpan(
+                  text: ' Delux',
+                  style: TextStyle(
+                    color: Colors.amber,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(text: ' works.'),
+              ],
+            ),
+            style: TextStyle(color: Colors.white),
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildHandlerIcon(FontAwesomeIcons.whatsapp),
+              _buildHandlerIcon(FontAwesomeIcons.telegram),
+              _buildHandlerIcon(FontAwesomeIcons.tiktok),
+              _buildHandlerIcon(FontAwesomeIcons.peopleGroup),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _headingContainer(first, second, third, fourth, fifth) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            first,
+            style: GoogleFonts.outfit(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: second,
+                  style: const TextStyle(
+                    // color: Colors.white,
+                    // fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                TextSpan(
+                  text: ' $third',
+                  style: const TextStyle(
+                    color: Colors.amber,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+              style: GoogleFonts.roboto(
+                fontSize: 40,
+                color: Colors.white,
+                height: 0.7,
+              ),
+            ),
+          ),
+
+          Row(
+            children: [
+              Text(
+                fourth,
+                style: GoogleFonts.roboto(
+                  fontSize: 40,
+                  color: Colors.white,
+                  height: 1,
+                ),
+              ),
+              const SizedBox(width: 20),
+              Text(
+                fifth,
+                style: GoogleFonts.outfit(
+                  fontSize: 40,
+                  color: Colors.white,
+                  height: 1,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  SizedBox _headerRow() {
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            'assets/img/logo1.png',
+            height: 120,
+            alignment: Alignment.centerLeft,
+          ),
+          Builder(
+            builder:
+                (context) => GestureDetector(
+                  onTap: () => Scaffold.of(context).openDrawer(),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.menu),
+                  ),
+                ),
+          ),
+        ],
       ),
     );
   }
