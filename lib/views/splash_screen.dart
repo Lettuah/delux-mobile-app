@@ -22,41 +22,45 @@ class SplashScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Stack(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
-                    width: 100.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
+              Align(
+                alignment: Alignment.topRight,
+                child: Stack(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
+                      width: 100.0,
+                      height: 100.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.amber.shade100,
+                          width: 3.0,
+                        ),
+                      ),
+                    ),
+
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
                         color: Colors.amber.shade100,
-                        width: 3.0,
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 238, 216, 150),
+                          width: 3.0,
+                        ),
                       ),
                     ),
-                  ),
-
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
-                    width: 50.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.amber.shade100,
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 238, 216, 150),
-                        width: 3.0,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: 500),
 
+              // action button container fixed at the bottom of the screen
               Container(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.fromLTRB(50.0, 0, 30.0, 70.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

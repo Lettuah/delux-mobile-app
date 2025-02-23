@@ -160,7 +160,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // const SizedBox(height: 20),
                   SizedBox(
-                    height: 400,
+                    width: double.infinity,
+                    height: 500,
                     child: PageView.builder(
                       controller: _pageController,
                       itemCount: imageSliders.length,
@@ -255,6 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text.rich(
                           TextSpan(
@@ -292,7 +294,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ", we're harnessing creativity to build a new wave of millionaires 💵 and billionaires 🏦. Our mission is to make you happy 😊 and financially stable 💰. We keep the spirit of networking alive 🌐, setting the right standards ✅ and breaking boundaries 🌍. Explore our mouth-watering features 🍽️, accessible to all African countries 🌎.",
                               ),
                             ],
-                            style: TextStyle(color: Colors.white),
                           ),
                         ),
 
@@ -313,7 +314,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Image.asset('assets/img/7.jpg'),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+
+                        child: Image.asset(
+                          'assets/img/7.jpg',
+                          fit: BoxFit.contain, // Maintains image proportions
+                        ),
+                      ),
+                    ),
                   ),
 
                   Center(
