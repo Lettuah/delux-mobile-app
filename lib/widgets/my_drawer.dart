@@ -4,7 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  final Function onTap;
+  const MyDrawer({required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,9 @@ class MyDrawer extends StatelessWidget {
               'Learn More',
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => Navigator.pop(context),
+            onTap: () {
+              onTap();
+            },
           ),
 
           const SizedBox(

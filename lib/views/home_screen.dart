@@ -1,6 +1,12 @@
 import 'dart:async';
 
+import 'package:delux/utility_functions.dart';
+import 'package:delux/widgets/build_handler_icon.dart';
 import 'package:delux/widgets/custom_elevated_button.dart';
+import 'package:delux/widgets/get_started_dialog_content.dart';
+import 'package:delux/widgets/header_widget.dart';
+import 'package:delux/widgets/heading_title_widget.dart';
+import 'package:delux/widgets/how_delux_works_dialog.dart';
 import 'package:delux/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +22,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final UtilityFunctions util = Get.put(UtilityFunctions());
+  final String telegramLink = "https://t.me/m/u-VPuiuQYTA0";
+  final String tiktokLink = "https://www.tiktok.com/@keenahmoney";
+
   final TextStyle headStyle = GoogleFonts.robotoCondensed(
     fontSize: 40,
     color: Colors.white,
@@ -36,11 +46,41 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   late final List<Widget> headings = [
-    _headingContainer('Earning', 'From', 'The Internet', 'While', 'Sitting'),
-    _headingContainer('Smart Ways', 'To Make', 'Money', 'From', 'Home'),
-    _headingContainer('Work', 'From', 'Anywhere,', 'Earn', 'Everywhere'),
-    _headingContainer('Get Paid', 'Without', 'Leaving', 'Your', 'Couch'),
-    _headingContainer('Unlock', 'Passive', 'Income', 'Streams', 'Online'),
+    const HeadingTitleWidget(
+      first: 'Earning',
+      second: 'From',
+      third: 'The Internet',
+      fourth: 'While',
+      fifth: 'Sitting',
+    ),
+    const HeadingTitleWidget(
+      first: 'Smart Ways',
+      second: 'To Make',
+      third: 'Money',
+      fourth: 'From',
+      fifth: 'Home',
+    ),
+    const HeadingTitleWidget(
+      first: 'Work',
+      second: 'From',
+      third: 'Anywhere,',
+      fourth: 'Earn',
+      fifth: 'Everywhere',
+    ),
+    const HeadingTitleWidget(
+      first: 'Get Paid',
+      second: 'Without',
+      third: 'Leaving',
+      fourth: 'Your',
+      fifth: 'Couch',
+    ),
+    const HeadingTitleWidget(
+      first: 'Unlock',
+      second: 'Passive',
+      third: 'Income',
+      fourth: 'Streams',
+      fifth: 'Online',
+    ),
   ];
   int _currentPage = 0;
   late Timer _timer;
@@ -67,15 +107,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _showCenterModal(context) {
+  void _showCenterModal(context, content) {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          backgroundColor: Colors.black,
-
-          content: _dialogContent(),
-        );
+        return AlertDialog(backgroundColor: Colors.black, content: content);
       },
     );
   }
@@ -100,7 +136,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        drawer: const MyDrawer(),
+        drawer: MyDrawer(
+          onTap: () async {
+            await util.launchExternalUrl(telegramLink);
+          },
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -108,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _headerRow(),
+                  const HeaderWidget(),
 
                   SizedBox(
                     height: 130,
@@ -182,14 +222,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         CustomElevatedButton(
                           buttonTitle: 'Register Now',
                           onClick: () {
-                            _showCenterModal(context);
-                            // Get.defaultDialog(
-                            //   title: '',
-                            //   titlePadding: const EdgeInsets.all(0),
-                            //   backgroundColor: Colors.black,
-                            //   content: _dialogContent(),
-                            //   contentPadding: const EdgeInsets.all(20),
-                            // );
+                            _showCenterModal(
+                              context,
+                              GetStartedDialogContent(
+                                telegramLink: telegramLink,
+                                tiktokLink: tiktokLink,
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -258,7 +297,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                         const SizedBox(height: 20),
-                        _buildElevatedBtn('How it works'),
+                        CustomElevatedButton(
+                          buttonTitle: 'How it works',
+                          onClick: () {
+                            _showCenterModal(
+                              context,
+                              const HowDeluxWorksDialog(),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -266,21 +313,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Image.asset('assets/img/2.jpg'),
+                    child: Image.asset('assets/img/7.jpg'),
                   ),
 
-                  Center(child: _buildElevatedBtn('Join Us Today!')),
+                  Center(
+                    child: CustomElevatedButton(
+                      buttonTitle: 'Join Us Today!',
+                      onClick: () {
+                        util.launchExternalUrl(telegramLink);
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   Center(
                     child: SizedBox(
-                      width: 200,
+                      width: 100,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildHandlerIcon(FontAwesomeIcons.whatsapp),
-                          _buildHandlerIcon(FontAwesomeIcons.telegram),
-                          _buildHandlerIcon(FontAwesomeIcons.tiktok),
-                          _buildHandlerIcon(FontAwesomeIcons.peopleGroup),
+                          BuildHandlerIcon(
+                            icon: FontAwesomeIcons.telegram,
+                            link: telegramLink,
+                          ),
+                          BuildHandlerIcon(
+                            icon: FontAwesomeIcons.tiktok,
+                            link: tiktokLink,
+                          ),
                         ],
                       ),
                     ),
@@ -302,218 +360,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  SizedBox _dialogContent() {
-    return SizedBox(
-      height: 311,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Row(
-                  children: [
-                    Icon(Icons.close, color: Colors.red.shade500),
-                    Text('Close', style: TextStyle(color: Colors.red.shade500)),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const Divider(color: Colors.white, thickness: 0.5),
-          const Text(
-            'Get Registered Now!',
-            style: TextStyle(color: Colors.white, fontSize: 24),
-          ),
-          const SizedBox(height: 10),
-          const Text.rich(
-            TextSpan(
-              text: 'Chat with our ',
-              children: [
-                TextSpan(
-                  text: 'Verified Agent',
-                  style: TextStyle(color: Colors.amber),
-                ),
-                TextSpan(text: ' on Telegram to register for Delux'),
-              ],
-            ),
-
-            style: TextStyle(color: Colors.white),
-          ),
-          const SizedBox(height: 10),
-          CustomElevatedButton(
-            textColor: Colors.black,
-            buttonColor: Colors.amber,
-            buttonTitle: "Click Here Now",
-            onClick: () {},
-          ),
-          const SizedBox(height: 10),
-          const Text.rich(
-            TextSpan(
-              text: 'Join our verified social handles to learn more about how ',
-              children: [
-                TextSpan(
-                  text: ' Delux',
-                  style: TextStyle(
-                    color: Colors.amber,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(text: ' works.'),
-              ],
-            ),
-            style: TextStyle(color: Colors.white),
-          ),
-          const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildHandlerIcon(FontAwesomeIcons.whatsapp),
-              _buildHandlerIcon(FontAwesomeIcons.telegram),
-              _buildHandlerIcon(FontAwesomeIcons.tiktok),
-              _buildHandlerIcon(FontAwesomeIcons.peopleGroup),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _headingContainer(first, second, third, fourth, fifth) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            first,
-            style: GoogleFonts.outfit(
-              fontSize: 40,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: second,
-                  style: const TextStyle(
-                    // color: Colors.white,
-                    // fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-                TextSpan(
-                  text: ' $third',
-                  style: const TextStyle(
-                    color: Colors.amber,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-              style: GoogleFonts.roboto(
-                fontSize: 40,
-                color: Colors.white,
-                height: 0.7,
-              ),
-            ),
-          ),
-
-          Row(
-            children: [
-              Text(
-                fourth,
-                style: GoogleFonts.roboto(
-                  fontSize: 40,
-                  color: Colors.white,
-                  height: 1,
-                ),
-              ),
-              const SizedBox(width: 20),
-              Text(
-                fifth,
-                style: GoogleFonts.outfit(
-                  fontSize: 40,
-                  color: Colors.white,
-                  height: 1,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  SizedBox _headerRow() {
-    return SizedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(
-            'assets/img/logo1.png',
-            height: 120,
-            alignment: Alignment.centerLeft,
-          ),
-          Builder(
-            builder:
-                (context) => GestureDetector(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.menu),
-                  ),
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container _buildHandlerIcon(icon) {
-    return Container(
-      width: 40,
-      height: 40,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.black54,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.amber, width: 1),
-      ),
-      child: Icon(icon, color: Colors.white),
-    );
-  }
-
-  ElevatedButton _buildElevatedBtn(buttonTitle) {
-    return ElevatedButton.icon(
-      onPressed: () {},
-      label: Text(
-        buttonTitle,
-        style: const TextStyle(
-          color: Colors.amber,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      icon: const Icon(Icons.arrow_forward),
-      style: ElevatedButton.styleFrom(
-        iconColor: Colors.amber,
-        backgroundColor: Colors.black12,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }
