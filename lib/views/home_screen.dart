@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final UtilityFunctions util = Get.put(UtilityFunctions());
   final String telegramLink = "https://t.me/m/u-VPuiuQYTA0";
   final String tiktokLink = "https://www.tiktok.com/@keenahmoney";
+  final String whatsappLink = "https://wa.me/2349032330132";
 
   final TextStyle headStyle = GoogleFonts.robotoCondensed(
     fontSize: 40,
@@ -161,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
-                    height: 500,
+                    height: 400,
                     child: PageView.builder(
                       controller: _pageController,
                       itemCount: imageSliders.length,
@@ -228,6 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               GetStartedDialogContent(
                                 telegramLink: telegramLink,
                                 tiktokLink: tiktokLink,
+                                whatsappLink: whatsappLink,
                               ),
                             );
                           },
@@ -303,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onClick: () {
                             _showCenterModal(
                               context,
-                              const HowDeluxWorksDialog(),
+                              HowDeluxWorksDialog(telegramLink: telegramLink),
                             );
                           },
                         ),
@@ -321,6 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         child: Image.asset(
                           'assets/img/7.jpg',
+
                           fit: BoxFit.contain, // Maintains image proportions
                         ),
                       ),
@@ -338,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 20),
                   Center(
                     child: SizedBox(
-                      width: 100,
+                      width: 130,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -349,6 +352,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           BuildHandlerIcon(
                             icon: FontAwesomeIcons.tiktok,
                             link: tiktokLink,
+                          ),
+                          BuildHandlerIcon(
+                            icon: FontAwesomeIcons.whatsapp,
+                            link: whatsappLink,
                           ),
                         ],
                       ),

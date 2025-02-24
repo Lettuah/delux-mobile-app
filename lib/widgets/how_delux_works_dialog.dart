@@ -1,8 +1,11 @@
+import 'package:delux/utility_functions.dart';
+import 'package:delux/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HowDeluxWorksDialog extends StatelessWidget {
-  const HowDeluxWorksDialog({super.key});
+  final String telegramLink;
+  const HowDeluxWorksDialog({required this.telegramLink, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +43,18 @@ class HowDeluxWorksDialog extends StatelessWidget {
             ),
           ),
           const Divider(thickness: 0.5),
-          const Expanded(
+          Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text.rich(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset('assets/img/5.jpg'),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
@@ -64,35 +72,39 @@ class HowDeluxWorksDialog extends StatelessWidget {
                     ),
                     style: TextStyle(fontSize: 16),
                   ),
-                  SizedBox(height: 15),
-                  Text(
+                  const SizedBox(height: 15),
+                  const Text(
                     '📝 Tasks you can perform on Delux:',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  SizedBox(height: 10),
-                  BulletPoint(text: 'Performing simple social media tasks 📱'),
-                  BulletPoint(
+                  const SizedBox(height: 10),
+                  const BulletPoint(
+                    text: 'Performing simple social media tasks 📱',
+                  ),
+                  const BulletPoint(
                     text:
                         'Working on advert jobs for foreign brands every week 🌍',
                   ),
-                  BulletPoint(text: 'Watching and rating movie clips 🎬'),
-                  BulletPoint(text: 'Streaming songs and providing reviews 🎧'),
-                  BulletPoint(text: '...and much more! 🚀'),
+                  const BulletPoint(text: 'Watching and rating movie clips 🎬'),
+                  const BulletPoint(
+                    text: 'Streaming songs and providing reviews 🎧',
+                  ),
+                  const BulletPoint(text: '...and much more! 🚀'),
 
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     '💡 The best part:',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 6),
-                  Text(
+                  const SizedBox(height: 6),
+                  const Text(
                     'Delux has partnered with foreign media brands, enabling you to monetize your social media accounts and earn in Euros 💶.',
                     style: TextStyle(fontSize: 15),
                   ),
 
-                  SizedBox(height: 20),
-                  Text(
-                    '💵 ENROLLMENT FEE: ₦8,000',
+                  const SizedBox(height: 20),
+                  const Text(
+                    '💵 ENROLLMENT FEE: ₦8,500',
                     style: TextStyle(
                       color: Colors.redAccent,
                       fontWeight: FontWeight.bold,
@@ -100,48 +112,48 @@ class HowDeluxWorksDialog extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     '🔥 Once you register, here’s what you get on Delux:',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
 
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     '💵 Earnings Breakdown:',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  SizedBox(height: 10),
-                  BulletPoint(text: '✅ Activation bonus: 3 Euros 💶'),
-                  BulletPoint(
+                  const SizedBox(height: 10),
+                  const BulletPoint(text: '✅ Activation bonus: 3 Euros 💶'),
+                  const BulletPoint(
                     text: '✅ Earn 1.5 Euros daily by completing jobs 📝',
                   ),
-                  BulletPoint(
+                  const BulletPoint(
                     text: '✅ Earn 0.5 Euros daily during your free time 🕒',
                   ),
-                  BulletPoint(
+                  const BulletPoint(
                     text:
                         '✅ Watch short movie clips 🎬: Earn 0.2 Euros per day',
                   ),
-                  BulletPoint(
+                  const BulletPoint(
                     text: '✅ Listen to songs 🎧: Earn 0.2 Euros per song',
                   ),
-                  BulletPoint(
+                  const BulletPoint(
                     text:
                         '✅ Weekly raffle draws 🎟️: Win between 100 to 500 Euros 💶',
                   ),
 
-                  SizedBox(height: 15),
-                  Text(
+                  const SizedBox(height: 15),
+                  const Text(
                     '💰 Additional earning opportunities:',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  BulletPoint(text: '🎮 Play Delux games'),
-                  BulletPoint(text: '📱 Monetize your TikTok account'),
-                  BulletPoint(text: '📝 Complete daily surveys'),
+                  const BulletPoint(text: '🎮 Play Delux games'),
+                  const BulletPoint(text: '📱 Monetize your TikTok account'),
+                  const BulletPoint(text: '📝 Complete daily surveys'),
 
-                  SizedBox(height: 8),
-                  Text(
+                  const SizedBox(height: 8),
+                  const Text(
                     '💵 Earn up to 50 Euros weekly through these extra activities!',
                     style: TextStyle(
                       color: Colors.greenAccent,
@@ -149,29 +161,29 @@ class HowDeluxWorksDialog extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     '📈 Additional Earnings:',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  BulletPoint(text: '🔸 Trainee’s commission: ₦7,500 💸'),
-                  BulletPoint(
+                  const BulletPoint(text: '🔸 Trainee’s commission: ₦7,500 💸'),
+                  const BulletPoint(
                     text:
                         '🔸 Indirect commissions: ₦250 & ₦100 per referral 🤝',
                   ),
 
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     '🗓️ Payment Days on Delux:',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  BulletPoint(
+                  const BulletPoint(
                     text:
                         '💵 Withdrawals are available twice a week after registration.',
                   ),
 
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     '🚀 REGISTRATION DETAILS:',
                     style: TextStyle(
                       color: Colors.redAccent,
@@ -179,17 +191,27 @@ class HowDeluxWorksDialog extends StatelessWidget {
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  BulletPoint(
+                  const SizedBox(height: 10),
+                  const BulletPoint(
                     text:
-                        '✅ One-time registration fee: ₦8,000 📝 (for your job permit)',
+                        '✅ One-time registration fee: ₦8,500 📝 (for your job permit)',
                   ),
-                  BulletPoint(
+                  const BulletPoint(
                     text:
                         '🎯 Join the VIP group 💎 and learn how to earn over 200 Euros weekly 💶!',
                   ),
 
-                  SizedBox(height: 20),
+                  const SizedBox(height: 10),
+                  CustomElevatedButton(
+                    buttonColor: Colors.amber,
+                    textColor: Colors.black,
+                    buttonTitle: "Register Now!",
+                    onClick: () async {
+                      await UtilityFunctions().launchExternalUrl(telegramLink);
+                    },
+                  ),
+
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

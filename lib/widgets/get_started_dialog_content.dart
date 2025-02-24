@@ -8,9 +8,11 @@ import 'package:url_launcher/url_launcher.dart';
 class GetStartedDialogContent extends StatelessWidget {
   final String telegramLink;
   final String tiktokLink;
+  final String whatsappLink;
   const GetStartedDialogContent({
     required this.telegramLink,
     required this.tiktokLink,
+    required this.whatsappLink,
     super.key,
   });
 
@@ -105,6 +107,10 @@ class GetStartedDialogContent extends StatelessWidget {
                   BuildHandlerIcon(
                     icon: FontAwesomeIcons.tiktok,
                     link: tiktokLink,
+                  ),
+                  BuildHandlerIcon(
+                    icon: FontAwesomeIcons.whatsapp,
+                    link: whatsappLink,
                   ),
                 ],
               ),
