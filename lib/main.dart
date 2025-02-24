@@ -15,11 +15,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Delux',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-        scaffoldBackgroundColor: const Color(0xFFeef2f1),
+        primarySwatch: Colors.amber, // Amber swatch
+        scaffoldBackgroundColor: Colors.transparent,
         textTheme: Theme.of(
           context,
         ).textTheme.apply(bodyColor: Colors.white, displayColor: Colors.white),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(foregroundColor: Colors.white),
+        ),
       ),
       home: const SplashScreen(),
       getPages: AppRoutes.getRoutes(),

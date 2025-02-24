@@ -1,20 +1,13 @@
-import 'package:delux/widgets/build_handler_icon.dart';
+import 'package:delux/utility_functions.dart';
 import 'package:delux/widgets/custom_elevated_button.dart';
+import 'package:delux/widgets/handler_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class GetStartedDialogContent extends StatelessWidget {
-  final String telegramLink;
-  final String tiktokLink;
-  final String whatsappLink;
-  const GetStartedDialogContent({
-    required this.telegramLink,
-    required this.tiktokLink,
-    required this.whatsappLink,
-    super.key,
-  });
+  GetStartedDialogContent({super.key});
+
+  final String telegramLink = HandlerWidget().telegramLink;
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +58,7 @@ class GetStartedDialogContent extends StatelessWidget {
             buttonColor: Colors.amber,
             buttonTitle: "Click Here Now",
             onClick: () async {
-              final Uri url = Uri.parse(telegramLink);
-              if (await canLaunchUrl(url)) {
-                await launchUrl(
-                  url,
-                  mode: LaunchMode.externalApplication,
-                ); // Opens in browser
-              } else {
-                throw 'Could not launch $telegramLink';
-              }
+              await UtilityFunctions().launchExternalUrl(telegramLink);
             },
           ),
           const SizedBox(height: 10),
@@ -94,28 +79,7 @@ class GetStartedDialogContent extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 15),
-          Center(
-            child: SizedBox(
-              width: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  BuildHandlerIcon(
-                    icon: FontAwesomeIcons.telegram,
-                    link: telegramLink,
-                  ),
-                  BuildHandlerIcon(
-                    icon: FontAwesomeIcons.tiktok,
-                    link: tiktokLink,
-                  ),
-                  BuildHandlerIcon(
-                    icon: FontAwesomeIcons.whatsapp,
-                    link: whatsappLink,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          HandlerWidget(),
         ],
       ),
     );

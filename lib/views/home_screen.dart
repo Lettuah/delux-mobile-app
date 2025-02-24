@@ -1,15 +1,16 @@
 import 'dart:async';
 
 import 'package:delux/utility_functions.dart';
-import 'package:delux/widgets/build_handler_icon.dart';
+import 'package:delux/widgets/background_gradient_widget.dart';
 import 'package:delux/widgets/custom_elevated_button.dart';
+import 'package:delux/widgets/footer_widget.dart';
 import 'package:delux/widgets/get_started_dialog_content.dart';
+import 'package:delux/widgets/handler_widget.dart';
 import 'package:delux/widgets/header_widget.dart';
 import 'package:delux/widgets/heading_title_widget.dart';
 import 'package:delux/widgets/how_delux_works_dialog.dart';
 import 'package:delux/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -23,9 +24,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final UtilityFunctions util = Get.put(UtilityFunctions());
-  final String telegramLink = "https://t.me/m/u-VPuiuQYTA0";
-  final String tiktokLink = "https://www.tiktok.com/@keenahmoney";
-  final String whatsappLink = "https://wa.me/2349032330132";
+  final String telegramLink = HandlerWidget().telegramLink;
+  final String tiktokLink = HandlerWidget().tiktokLink;
+  final String whatsappLink = HandlerWidget().whatsappLink;
 
   final TextStyle headStyle = GoogleFonts.robotoCondensed(
     fontSize: 40,
@@ -126,15 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.amber, Colors.black87, Colors.amber, Colors.black],
-          stops: [0.0, 0.7, 0.8, 1.0],
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-        ),
-      ),
+    return BackgroundGradientWidget(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         drawer: MyDrawer(
@@ -226,11 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onClick: () {
                             _showCenterModal(
                               context,
-                              GetStartedDialogContent(
-                                telegramLink: telegramLink,
-                                tiktokLink: tiktokLink,
-                                whatsappLink: whatsappLink,
-                              ),
+                              GetStartedDialogContent(),
                             );
                           },
                         ),
@@ -339,40 +328,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Center(
-                    child: SizedBox(
-                      width: 130,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          BuildHandlerIcon(
-                            icon: FontAwesomeIcons.telegram,
-                            link: telegramLink,
-                          ),
-                          BuildHandlerIcon(
-                            icon: FontAwesomeIcons.tiktok,
-                            link: tiktokLink,
-                          ),
-                          BuildHandlerIcon(
-                            icon: FontAwesomeIcons.whatsapp,
-                            link: whatsappLink,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Center(
-                    child: Column(
-                      children: [
-                        Image.asset('assets/img/logo1.png', height: 150),
-                        const Text(
-                          'All rights reserved',
-                          style: TextStyle(color: Colors.white, height: -6),
-                        ),
-                      ],
-                    ),
-                  ),
+
+                  const FooterWidget(),
                 ],
               ),
             ),
