@@ -34900,7 +34900,7 @@ al(){var s=A.ajb($.aZ(),new A.np(),t.uu)
 A.uh()
 A.uh()
 A.uh()
-return new A.K8(s,"https://t.me/m/u-VPuiuQYTA0","https://www.tiktok.com/@keenahmoney","https://wa.me/2349032330132",A.aAw().$2$color$fontSize(B.j,40),A.ajU(),A.ajU(),A.c(["assets/img/1.jpg","assets/img/2.jpg","assets/img/3.jpg","assets/img/4.jpg","assets/img/5.jpg","assets/img/6.jpg","assets/img/7.jpg","assets/img/9.jpg"],t.s))}}
+return new A.K8(s,"https://t.me/m/u-VPuiuQYTA0","https://www.tiktok.com/@keenahmoney","https://wa.me/message/TGJDTR4WXXGKK1",A.aAw().$2$color$fontSize(B.j,40),A.ajU(),A.ajU(),A.c(["assets/img/1.jpg","assets/img/2.jpg","assets/img/3.jpg","assets/img/4.jpg","assets/img/5.jpg","assets/img/6.jpg","assets/img/7.jpg","assets/img/9.jpg"],t.s))}}
 A.K8.prototype={
 gM7(){var s,r=this.Q
 if(r===$){s=A.c([B.Bg,B.Bh,B.Bf,B.Bd,B.Be],t.E)
@@ -35006,7 +35006,7 @@ case 2:return A.L(null,r)}})
 return A.M($async$$0,r)},
 $S:13}
 A.DM.prototype={
-L(a){return A.iz(A.i1(A.j8(A.c([this.wC(B.Bk,"https://t.me/m/u-VPuiuQYTA0"),this.wC(B.Bl,"https://www.tiktok.com/@keenahmoney"),this.wC(B.Bm,"https://wa.me/2349032330132")],t.E),B.a9,B.pT,B.P),null,130),null,null)},
+L(a){return A.iz(A.i1(A.j8(A.c([this.wC(B.Bk,"https://t.me/m/u-VPuiuQYTA0"),this.wC(B.Bl,"https://www.tiktok.com/@keenahmoney"),this.wC(B.Bm,"https://wa.me/message/TGJDTR4WXXGKK1")],t.E),B.a9,B.pT,B.P),null,130),null,null)},
 wC(a,b){var s=null,r=A.iv(10),q=A.ae8(B.ak,1)
 return A.eq(A.iz(A.m1(s,A.DZ(a,B.j,s),B.ar,!1,s,s,s,s,s,s,s,s,s,s,s,s,new A.Vl(this,b),s,s,s),s,s),new A.cf(B.z,s,q,r,s,s,B.ap),40,s,s,40)}}
 A.Vl.prototype={

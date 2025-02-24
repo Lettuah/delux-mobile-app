@@ -8,7 +8,7 @@ class HandlerWidget extends StatelessWidget {
 
   final String telegramLink = "https://t.me/m/u-VPuiuQYTA0";
   final String tiktokLink = "https://www.tiktok.com/@keenahmoney";
-  final String whatsappLink = "https://wa.me/2349032330132";
+  final String whatsappLink = "https://wa.me/message/TGJDTR4WXXGKK1";
 
   final UtilityFunctions util = Get.put(UtilityFunctions());
 
