@@ -1,11 +1,11 @@
 {
-    "name": "Delux",
-    "short_name": "Delux",
+    "name": "delux",
+    "short_name": "delux",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ffbf00",
-    "description": "Unlock the world of luxury with Delux.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
