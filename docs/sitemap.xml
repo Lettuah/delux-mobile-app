@@ -4,13 +4,27 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+<!-- Improved Sitemap for better SEO ranking -->
 
 <url>
-  <loc>https://lettuah.github.io/delux-mobile-app/</loc>
-  <lastmod>2025-02-23T10:41:20+00:00</lastmod>
+  <loc>https://deluxregistration.com/</loc>
+  <lastmod>2025-02-24T21:29:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.00</priority>
 </url>
 
+<url>
+  <loc>https://deluxregistration.com/#/home</loc>
+  <lastmod>2025-02-24T21:29:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<url>
+  <loc>https://deluxregistration.com/#/privacy/policy</loc>
+  <lastmod>2025-02-24T21:29:51+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
 
 </urlset>
