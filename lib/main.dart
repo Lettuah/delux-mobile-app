@@ -2,8 +2,10 @@ import 'package:delux/routes.dart';
 import 'package:delux/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 

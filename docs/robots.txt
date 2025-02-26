@@ -1,20 +1,3 @@
-# robots.txt for deluxregistration.com
-# Purpose: Improve crawling efficiency and SEO performance
-
 User-agent: *
 Allow: /
-Disallow: /private/  # Example: Disallow sensitive directories if any
-Disallow: /temp/     # Disallow temporary pages if applicable
-
-# Crawl-delay for non-Google bots (optional, adjust as needed)
-Crawl-delay: 10
-
-# Sitemaps for better indexing
-Sitemap: https://deluxregistration.com/sitemap.xml
-
-# Specific directives for major search engines (optional)
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+Sitemap: https://lettuah.github.io/delux-mobile-app/sitemap.xml
