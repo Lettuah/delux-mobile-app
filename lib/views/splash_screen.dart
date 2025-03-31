@@ -1,10 +1,51 @@
 import "package:delux/routes.dart";
 import "package:delux/widgets/custom_elevated_button.dart";
 import "package:flutter/material.dart";
+import "package:flutter_seo/flutter_seo.dart";
 import "package:get/get.dart";
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      HeadTagUtil.setTitle('Welcome | Delux - Earn & Grow Income');
+      HeadTagUtil.add("name", "author", "Delux Team");
+      HeadTagUtil.add("property", "og:url", "Add og:url");
+      HeadTagUtil.setHead(
+        title: "Welcome | Delux - Earn & Grow Income",
+        keywords: [
+          "Delux",
+          "Delux Registration",
+          "Delux App",
+          "Delux Income",
+          "delux coupon",
+          "register delux",
+          "join delux",
+          "about delux",
+          "delux telegram",
+          "delux tiktok",
+          "delux agent",
+          "delux agent registration",
+          "delux agent registration link",
+          "delux.com.ng",
+          "delux.com",
+          "delux.com.ng registration",
+        ],
+        description:
+            "Delux is a platform that allows you to earn money online effortlessly. Join us today and start your journey towards financial freedom.",
+        imageUrl: "/assets/img/icon.png",
+        url: "https://deluxregistration.com",
+      );
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

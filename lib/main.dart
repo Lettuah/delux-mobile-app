@@ -1,11 +1,11 @@
 import 'package:delux/routes.dart';
-import 'package:delux/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
   setPathUrlStrategy();
+
   runApp(const MyApp());
 }
 
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
           style: TextButton.styleFrom(foregroundColor: Colors.white),
         ),
       ),
-      home: const SplashScreen(),
-      getPages: AppRoutes.getRoutes(),
+      initialRoute: AppRoutes.splash, // Set initial route
+      getPages: AppRoutes.getRoutes(), // Load routes from AppRoutes
       debugShowCheckedModeBanner: false,
     );
   }
