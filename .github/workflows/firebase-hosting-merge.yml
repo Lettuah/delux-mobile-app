@@ -2,19 +2,24 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-        flutter-version: '3.x'  # Update to match your Flutter version
+          flutter-version: '3.29.0'  # Replace with your actual Flutter version (e.g., '3.13.0')
 
       - name: Install dependencies
         run: flutter pub get
@@ -23,8 +28,7 @@ jobs:
         run: flutter build web
 
       - name: Deploy to Firebase
-        run: firebase deploy --only hosting
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DELUX_MOBILE_APP }}
