@@ -11,7 +11,6 @@ import 'package:delux/widgets/heading_title_widget.dart';
 import 'package:delux/widgets/how_delux_works_dialog.dart';
 import 'package:delux/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_seo/flutter_seo.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -90,36 +89,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      HeadTagUtil.setTitle('Home | Delux - Earn & Grow Income');
-      HeadTagUtil.add("name", "author", "Delux Team");
-      HeadTagUtil.add("property", "og:url", "Add og:url");
-      HeadTagUtil.setHead(
-        title: "Home | Delux - Earn & Grow Income",
-        keywords: [
-          "Delux",
-          "Delux Registration",
-          "Delux App",
-          "Delux Income",
-          "delux coupon",
-          "register delux",
-          "join delux",
-          "about delux",
-          "delux telegram",
-          "delux tiktok",
-          "delux agent",
-          "delux agent registration",
-          "delux agent registration link",
-          "delux.com.ng",
-          "delux.com",
-          "delux.com.ng registration",
-        ],
-        description:
-            "Delux is a platform that allows you to earn money online effortlessly. Join us today and start your journey towards financial freedom.",
-        imageUrl: "/assets/img/icon.png",
-        url: "https://deluxregistration.com",
-      );
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   HeadTagUtil.setTitle('Home | Delux - Earn & Grow Income');
+    //   HeadTagUtil.add("name", "author", "Delux Team");
+    //   HeadTagUtil.add("property", "og:url", "Add og:url");
+    //   HeadTagUtil.setHead(
+    //     title: "Home | Delux - Earn & Grow Income",
+    //     keywords: [
+    //       "Delux",
+    //       "Delux Registration",
+    //       "Delux App",
+    //       "Delux Income",
+    //       "delux coupon",
+    //       "register delux",
+    //       "join delux",
+    //       "about delux",
+    //       "delux telegram",
+    //       "delux tiktok",
+    //       "delux agent",
+    //       "delux agent registration",
+    //       "delux agent registration link",
+    //       "delux.com.ng",
+    //       "delux.com",
+    //       "delux.com.ng registration",
+    //     ],
+    //     description:
+    //         "Delux is a platform that allows you to earn money online effortlessly. Join us today and start your journey towards financial freedom.",
+    //     imageUrl: "/assets/img/icon.png",
+    //     url: "https://deluxregistration.com",
+    //   );
+    // });
     super.initState();
 
     _startAutoSlide();
@@ -248,10 +247,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         CustomElevatedButton(
                           buttonTitle: 'Register Now',
                           onClick: () {
-                            _showCenterModal(
-                              context,
-                              GetStartedDialogContent(),
-                            );
+                            Get.toNamed('sign-up');
+                            // _showCenterModal(
+                            //   context,
+                            //   GetStartedDialogContent(),
+                            // );
                           },
                         ),
                       ],
