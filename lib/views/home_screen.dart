@@ -4,7 +4,6 @@ import 'package:delux/utility_functions.dart';
 import 'package:delux/widgets/background_gradient_widget.dart';
 import 'package:delux/widgets/custom_elevated_button.dart';
 import 'package:delux/widgets/footer_widget.dart';
-import 'package:delux/widgets/get_started_dialog_content.dart';
 import 'package:delux/widgets/handler_widget.dart';
 import 'package:delux/widgets/header_widget.dart';
 import 'package:delux/widgets/heading_title_widget.dart';
@@ -354,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: CustomElevatedButton(
                       buttonTitle: 'Join Us Today!',
                       onClick: () {
-                        util.launchExternalUrl(telegramLink);
+                        Get.toNamed('sign-up');
                       },
                     ),
                   ),
