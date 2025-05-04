@@ -4,27 +4,37 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- Improved Sitemap for better SEO ranking -->
 
+<!-- Homepage (Most Important) -->
 <url>
-  <loc>https://deluxregistration.com/</loc>
-  <lastmod>2025-02-24T21:29:51+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>1.00</priority>
+  <loc>https://delux-mobile-app.web.app/</loc>
+  <lastmod>2025-03-31T11:57:09+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.0</priority>
 </url>
 
+<!-- Splash Screen (Less Important) -->
 <url>
-  <loc>https://deluxregistration.com/home</loc>
-  <lastmod>2025-02-24T21:29:51+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.90</priority>
+  <loc>https://delux-mobile-app.web.app/splash</loc>
+  <lastmod>2025-03-31T11:57:09+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.3</priority>
 </url>
 
+<!-- Home Page (Important) -->
 <url>
-  <loc>https://deluxregistration.com/privacy/policy</loc>
-  <lastmod>2025-02-24T21:29:51+00:00</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.70</priority>
+  <loc>https://delux-mobile-app.web.app/home</loc>
+  <lastmod>2025-03-31T11:57:09+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- Privacy Policy (Less Important) -->
+<url>
+  <loc>https://delux-mobile-app.web.app/privacy/policy</loc>
+  <lastmod>2025-03-31T11:57:09+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
 </url>
 
 </urlset>
