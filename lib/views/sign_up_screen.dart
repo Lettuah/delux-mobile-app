@@ -15,6 +15,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isBuyingPermit = false;
 
   String? _selectedCountry;
+  String? _selectedPackage;
   final _formKey = GlobalKey<FormState>();
   final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -45,11 +46,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final email = _emailController.text;
     final username = _usernameController.text;
     final phone = _phoneController.text;
+    final package = _selectedPackage ?? "Not Selected";
     final country = _selectedCountry ?? "Not Selected";
     final password = "*" * _passwordController.text.length;
 
     final message = Uri.encodeComponent(
-      '''Hello, I want to buy Delux Job Permit Code.\n\nFull Name: $fullName\nEmail: $email\nUsername: $username\nPhone: $phone\nCountry: $country\nPassword: $password''',
+      '''Hello, I want to buy Delux Job Permit Code.\n\nFull Name: $fullName\nEmail: $email\nUsername: $username\nPhone: $phone\nPACKAGE: $package\nCountry: $country\nPassword: $password''',
     );
 
     final url = "https://t.me/deluxcompanyaccount?text=$message";
@@ -139,6 +141,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         const SizedBox(height: 16),
                         _buildDropdownField(
+                          label: "Select Package",
+                          icon: Icons.inventory,
+                          items: [
+                            "Normal Plan (₦8,500)",
+                            "Delux Alpha (₦12,000)",
+                          ],
+                          selectedValue: _selectedPackage,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedPackage = value;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        _buildDropdownField(
                           label: "Select Country",
                           icon: Icons.flag,
                           items: [
@@ -179,8 +196,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 _handleTelegramButtonClick();
                               },
                               child: const Text(
-                                'Buy Permit Code Here',
-                                style: TextStyle(height: -1),
+                                'Click Here',
+                                style: TextStyle(
+                                  height: -1,
+                                  color: Colors.amber,
+                                ),
                               ),
                             ),
                           ],
@@ -255,7 +275,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             return "Full Name must be at least 10 characters long";
           }
           if (words.length < 2 || words.length > 3) {
-            return "Enter at least two names (Surname and Firstname), max of three";
+            return "Enter at least two names (Surname and FirstName), max of three";
           }
         }
 
