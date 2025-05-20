@@ -293,7 +293,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             RegExp(r'\D'),
             '',
           ); // remove non-digits
-          if (cleaned.length <= 4) {
+          if (cleaned.length <= 5) {
             return "Provide your real phone number";
           }
           // if (!cleaned.startsWith("0") || cleaned[2] != '0') {
