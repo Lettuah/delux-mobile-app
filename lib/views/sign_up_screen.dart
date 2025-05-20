@@ -287,25 +287,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
           }
         }
 
-        // Username Validation
-        if (label == "Username") {
-          if (value.contains(RegExp(r'\s'))) {
-            return "Username must not contain spaces";
-          }
-        }
-
         // Phone Number Validation
         if (label == "Phone Number") {
           final cleaned = value.replaceAll(
             RegExp(r'\D'),
             '',
           ); // remove non-digits
-          if (cleaned.length != 11) {
-            return "Phone number must be exactly 11 digits";
+          if (cleaned.length <= 4) {
+            return "Provide your real phone number";
           }
-          if (!cleaned.startsWith("0") || cleaned[2] != '0') {
-            return "Must be valid phone number in this format: 07012345678";
-          }
+          // if (!cleaned.startsWith("0") || cleaned[2] != '0') {
+          //   return "Must be valid phone number in this format: 07012345678";
+          // }
         }
 
         // Password Validation
