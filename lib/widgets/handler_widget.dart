@@ -6,10 +6,9 @@ import "package:get/get.dart";
 class HandlerWidget extends StatelessWidget {
   HandlerWidget({super.key});
 
-  final String telegramLink = "https://t.me/m/u-VPuiuQYTA0";
+  final String telegramLink = "https://t.me/Officialmiamor";
   final String tiktokLink = "https://www.tiktok.com/@keenahmoney";
   final String whatsappLink = "https://wa.me/message/TGJDTR4WXXGKK1";
-
   final UtilityFunctions util = Get.put(UtilityFunctions());
 
   @override
@@ -34,9 +33,9 @@ class HandlerWidget extends StatelessWidget {
       width: 40,
       height: 40,
       decoration: BoxDecoration(
-        color: Colors.black54,
+        // color: Colors.black54,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.amber, width: 1),
+        // border: Border.all(color: Colors.amber, width: 1),
       ),
       child: Center(
         child: GestureDetector(

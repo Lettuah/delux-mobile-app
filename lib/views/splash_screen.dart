@@ -1,6 +1,9 @@
-import "package:delux/routes.dart";
-import "package:delux/widgets/custom_elevated_button.dart";
+import "package:delux/app/app.color.dart";
+import "package:delux/utility_functions.dart";
+import "package:delux/widgets/footer_widget.dart";
+import "package:delux/widgets/handler_widget.dart";
 import "package:flutter/material.dart";
+import "package:flutter_animate/flutter_animate.dart";
 import "package:get/get.dart";
 
 class SplashScreen extends StatefulWidget {
@@ -12,145 +15,136 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   HeadTagUtil.setTitle('Welcome | Delux - Earn & Grow Income');
-    //   HeadTagUtil.add("name", "author", "Delux Team");
-    //   HeadTagUtil.add("property", "og:url", "Add og:url");
-    //   HeadTagUtil.setHead(
-    //     title: "Welcome | Delux - Earn & Grow Income",
-    //     keywords: [
-    //       "Delux",
-    //       "Delux Registration",
-    //       "Delux App",
-    //       "Delux Income",
-    //       "delux coupon",
-    //       "register delux",
-    //       "join delux",
-    //       "about delux",
-    //       "delux telegram",
-    //       "delux tiktok",
-    //       "delux agent",
-    //       "delux agent registration",
-    //       "delux agent registration link",
-    //       "delux.com.ng",
-    //       "delux.com",
-    //       "delux.com.ng registration",
-    //       "earn with delux",
-    //       "delux digital",
-    //       "delux login",
-    //       "delux sign up",
-    //       "delux platform",
-    //       "delux business",
-    //       "delux earning",
-    //       "delux ajo",
-    //       "delux job",
-    //       "delux task",
-    //       "delux referral",
-    //       "delux nigeria",
-    //     ],
-    //     description:
-    //         "Delux is a platform that allows you to earn money online effortlessly. Join us today and start your journey towards financial freedom.",
-    //     imageUrl: "/assets/img/icon.png",
-    //     url: "https://deluxregistration.com",
-    //   );
-    // });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.amber, Colors.black87],
-          stops: [0.0, 1.0],
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
+          colors: [
+            AppColor.colorOne,
+            const Color(0XFFBEE3FF),
+            Colors.white,
+            Colors.black,
+          ],
+          stops: const [0.0, 0.8, 0.9, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Stack(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.amber.shade100,
-                          width: 3.0,
-                        ),
-                      ),
-                    ),
-
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.amber.shade100,
-                        border: Border.all(
-                          color: const Color.fromARGB(255, 238, 216, 150),
-                          width: 3.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // action button container fixed at the bottom of the screen
-              Container(
-                padding: const EdgeInsets.fromLTRB(50.0, 0, 30.0, 70.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Redefine',
-                      style: TextStyle(
-                        fontSize: 34.0,
-                        fontFamily: 'Roboto',
-                        color: Colors.white,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    const Text.rich(
-                      TextSpan(
-                        text: 'Your ',
+          body: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 36),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TextSpan(
-                            text: 'Grandeur',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final UtilityFunctions util = Get.put(
+                                UtilityFunctions(),
+                              );
+                              await util.launchExternalUrl(
+                                HandlerWidget().telegramLink,
+                              );
+                            },
+                            child: Text(
+                              'Get Started',
+                              style: TextStyle(color: AppColor.colorThree),
+                            ),
                           ),
                         ],
                       ),
-                      style: TextStyle(
-                        fontSize: 34.0,
-                        fontFamily: 'Roboto',
-                        color: Colors.white,
+                      const SizedBox(height: 50),
+                      Text(
+                        'WELCOME TO',
+                        style: TextStyle(
+                          letterSpacing: 3,
+                          color: AppColor.colorFour,
+                        ),
                       ),
-                    ),
-                    CustomElevatedButton(
-                      buttonTitle: 'Get Started',
-                      onClick: () {
-                        Get.toNamed(AppRoutes.home);
-                      },
-                    ),
-                  ],
+                      const SizedBox(height: 15),
+                      Text.rich(
+                        TextSpan(
+                          text: 'MI',
+                          children: [
+                            TextSpan(
+                              text: 'Amor',
+                              style: TextStyle(color: AppColor.colorFour),
+                            ),
+                          ],
+                          style: TextStyle(
+                            color: AppColor.colorOne,
+                            fontSize: 48,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        textAlign: TextAlign.center,
+                        'Where connections blossom with every \nmoment',
+                        style: TextStyle(color: AppColor.colorThree),
+                      ),
+
+                      Image.network(
+                        'https://www.animatedimages.org/data/media/50/animated-flower-image-0013.gif',
+                        width: 52,
+                        height: 52,
+                      ),
+                      const Spacer(),
+                      Text(
+                            "Begin Your Journey",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.colorThree,
+                            ),
+                          )
+                          .animate()
+                          .fadeIn(duration: 600.ms)
+                          .then(delay: 200.ms) // baseline=800ms
+                          .slide(),
+                      const SizedBox(height: 8),
+                      GestureDetector(
+                        onTap: () async {
+                          final UtilityFunctions util = Get.put(
+                            UtilityFunctions(),
+                          );
+                          await util.launchExternalUrl(
+                            HandlerWidget().telegramLink,
+                          );
+                        },
+                        child: Container(
+                          height: 100,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            color: AppColor.colorThree,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Transform.rotate(
+                            angle: 90 * 3.1415926535 / 180,
+                            child: Image.asset(
+                              'assets/gif/1.gif',
+                              width: 32,
+                              height: 32,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+
+                const FooterWidget(),
+              ],
+            ),
           ),
         ),
       ),
