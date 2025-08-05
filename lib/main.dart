@@ -1,6 +1,7 @@
 import 'package:delux/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
@@ -14,19 +15,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Delux',
+      title: 'MiAmor',
       theme: ThemeData(
-        primarySwatch: Colors.amber, // Amber swatch
+        primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.transparent,
-        textTheme: Theme.of(
-          context,
-        ).textTheme.apply(bodyColor: Colors.white, displayColor: Colors.white),
+        textTheme: GoogleFonts.urbanistTextTheme(
+          Theme.of(context).textTheme,
+        ).apply(bodyColor: Colors.white, displayColor: Colors.white),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(foregroundColor: Colors.white),
         ),
       ),
-      initialRoute: AppRoutes.splash, // Set initial route
-      getPages: AppRoutes.getRoutes(), // Load routes from AppRoutes
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.getRoutes(),
       debugShowCheckedModeBanner: false,
     );
   }

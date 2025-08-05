@@ -38,16 +38,12 @@ class HeadingTitleWidget extends StatelessWidget {
               children: [
                 TextSpan(
                   text: second,
-                  style: const TextStyle(
-                    // color: Colors.white,
-                    // fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
+                  style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
                 TextSpan(
                   text: ' $third',
                   style: const TextStyle(
-                    color: Colors.amber,
+                    color: Colors.lightBlueAccent,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -75,7 +71,7 @@ class HeadingTitleWidget extends StatelessWidget {
                 fifth,
                 style: GoogleFonts.outfit(
                   fontSize: 40,
-                  color: Colors.white,
+                  color: Colors.indigo,
                   height: 1,
                   fontWeight: FontWeight.bold,
                 ),

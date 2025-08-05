@@ -1,9 +1,7 @@
 import "package:delux/app/app.color.dart";
-import "package:delux/utility_functions.dart";
-import "package:delux/widgets/footer_widget.dart";
-import "package:delux/widgets/handler_widget.dart";
+import "package:delux/routes.dart";
+import "package:delux/widgets/custom_elevated_button.dart";
 import "package:flutter/material.dart";
-import "package:flutter_animate/flutter_animate.dart";
 import "package:get/get.dart";
 
 class SplashScreen extends StatefulWidget {
@@ -15,18 +13,17 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            AppColor.colorOne,
-            const Color(0XFFBEE3FF),
-            Colors.white,
-            Colors.black,
-          ],
-          stops: const [0.0, 0.8, 0.9, 1.0],
+          colors: [AppColor.colorThree, Colors.black87],
+          stops: [0.0, 0.8],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -34,117 +31,80 @@ class _SplashScreenState extends State<SplashScreen> {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 36),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () async {
-                              final UtilityFunctions util = Get.put(
-                                UtilityFunctions(),
-                              );
-                              await util.launchExternalUrl(
-                                HandlerWidget().telegramLink,
-                              );
-                            },
-                            child: Text(
-                              'Get Started',
-                              style: TextStyle(color: AppColor.colorThree),
-                            ),
-                          ),
-                        ],
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Stack(
+                children: [
+                  // Circular container
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(260, 30, 25.0, 0),
+                    width: 100.0,
+                    height: 100.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppColor.colorThree,
+                        width: 1.0,
                       ),
-                      const SizedBox(height: 50),
-                      Text(
-                        'WELCOME TO',
-                        style: TextStyle(
-                          letterSpacing: 3,
-                          color: AppColor.colorFour,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Text.rich(
-                        TextSpan(
-                          text: 'MI',
-                          children: [
-                            TextSpan(
-                              text: 'Amor',
-                              style: TextStyle(color: AppColor.colorFour),
-                            ),
-                          ],
-                          style: TextStyle(
-                            color: AppColor.colorOne,
-                            fontSize: 48,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Text(
-                        textAlign: TextAlign.center,
-                        'Where connections blossom with every \nmoment',
-                        style: TextStyle(color: AppColor.colorThree),
-                      ),
-
-                      Image.network(
-                        'https://www.animatedimages.org/data/media/50/animated-flower-image-0013.gif',
-                        width: 52,
-                        height: 52,
-                      ),
-                      const Spacer(),
-                      Text(
-                            "Begin Your Journey",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.colorThree,
-                            ),
-                          )
-                          .animate()
-                          .fadeIn(duration: 600.ms)
-                          .then(delay: 200.ms) // baseline=800ms
-                          .slide(),
-                      const SizedBox(height: 8),
-                      GestureDetector(
-                        onTap: () async {
-                          final UtilityFunctions util = Get.put(
-                            UtilityFunctions(),
-                          );
-                          await util.launchExternalUrl(
-                            HandlerWidget().telegramLink,
-                          );
-                        },
-                        child: Container(
-                          height: 100,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            color: AppColor.colorThree,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Transform.rotate(
-                            angle: 90 * 3.1415926535 / 180,
-                            child: Image.asset(
-                              'assets/gif/1.gif',
-                              width: 32,
-                              height: 32,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                    ),
                   ),
-                ),
 
-                const FooterWidget(),
-              ],
-            ),
+                  // Icon centered inside the circle
+                  Positioned(
+                    left: 285, // 260 + (100 - 50) / 2
+                    top: 55, // 30 + (100 - 50) / 2
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.blue[200],
+                        size: 50,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              // action button container fixed at the bottom of the screen
+              Container(
+                padding: const EdgeInsets.fromLTRB(50.0, 0, 30.0, 70.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Welcome to MiAmor',
+                      style: TextStyle(
+                        fontSize: 34.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Text(
+                      'Where Love Meets Opportunity',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.lightBlueAccent,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const Text(
+                      'Connect. Earn. Grow — Your journey starts here.',
+                      style: TextStyle(fontSize: 16.0, color: Colors.blueGrey),
+                    ),
+                    const SizedBox(height: 30),
+                    CustomElevatedButton(
+                      buttonTitle: 'Get Started',
+                      onClick: () {
+                        Get.toNamed(AppRoutes.home);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),

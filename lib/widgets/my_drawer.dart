@@ -1,3 +1,5 @@
+import 'package:delux/app/app.color.dart';
+import 'package:delux/app/app.string.dart' as app_string;
 import 'package:delux/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,7 +12,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColor.colorThree,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -23,6 +25,13 @@ class MyDrawer extends StatelessWidget {
             title: const Text('Home', style: TextStyle(color: Colors.white)),
             onTap: () {
               Get.toNamed(AppRoutes.splash);
+            },
+          ),
+          ListTile(
+            leading: const Icon(FontAwesomeIcons.link, color: Colors.white),
+            title: const Text('Sign Up', style: TextStyle(color: Colors.white)),
+            onTap: () {
+              Get.toNamed('sign-up');
             },
           ),
           ListTile(
@@ -47,7 +56,7 @@ class MyDrawer extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                '© ${DateTime.now().year} Delux Inc.',
+                '© ${DateTime.now().year} ${app_string.appName}  Inc.',
                 style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ),

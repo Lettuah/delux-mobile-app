@@ -1,4 +1,7 @@
+import "package:delux/app/app.color.dart";
+import "package:delux/app/app.string.dart" as app_string;
 import "package:delux/widgets/custom_elevated_button.dart";
+import "package:delux/widgets/handler_widget.dart";
 import "package:flutter/material.dart";
 import "package:delux/widgets/background_gradient_widget.dart";
 import "package:get/get.dart";
@@ -51,10 +54,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final password = "*" * _passwordController.text.length;
 
     final message = Uri.encodeComponent(
-      '''Hello, I want to buy Delux Job Permit Code.\n\nFull Name: $fullName\nEmail: $email\nUsername: $username\nPhone: $phone\nPACKAGE: $package\nCountry: $country\nPassword: $password''',
+      '''Hello, I want to buy ${app_string.appName} Job Permit Code.\n\nFull Name: $fullName\nEmail: $email\nUsername: $username\nPhone: $phone\nPACKAGE: $package\nCountry: $country\nPassword: $password''',
     );
 
-    final url = "https://t.me/deluxcompanyaccount?text=$message";
+    final url = "${HandlerWidget().telegramLink}?text=$message";
 
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
@@ -82,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppColor.colorThree,
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -144,8 +147,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           label: "Select Package",
                           icon: Icons.inventory,
                           items: [
-                            "Normal Plan (₦8,500)",
-                            "Delux Alpha (₦12,000)",
+                            "${app_string.appName} Plus (₦10,000)",
+                            "${app_string.appName} Ultra (₦14,000)",
                           ],
                           selectedValue: _selectedPackage,
                           onChanged: (value) {
@@ -164,6 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             "Uganda",
                             "Cameroon",
                             "Kenya",
+                            "Other",
                           ],
                           selectedValue: _selectedCountry,
                           onChanged: (value) {
@@ -333,7 +337,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         }
         return null;
       },
-      dropdownColor: Colors.black87,
+      dropdownColor: Colors.blueGrey,
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         labelText: label,

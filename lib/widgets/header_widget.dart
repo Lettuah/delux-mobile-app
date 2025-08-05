@@ -1,3 +1,4 @@
+import 'package:delux/app/app.color.dart';
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -14,19 +15,27 @@ class HeaderWidget extends StatelessWidget {
             height: 120,
             alignment: Alignment.centerLeft,
           ),
-          Builder(
-            builder:
-                (context) => GestureDetector(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
+          Row(
+            children: [
+              Builder(
+                builder:
+                    (context) => GestureDetector(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: Colors.amberAccent,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.menu,
+                          color: AppColor.colorThree,
+                        ),
+                      ),
                     ),
-                    child: const Icon(Icons.menu),
-                  ),
-                ),
+              ),
+              const SizedBox(width: 15),
+            ],
           ),
         ],
       ),

@@ -1,13 +1,18 @@
 import 'dart:async';
 
+import 'package:delux/app/app.color.dart';
 import 'package:delux/utility_functions.dart';
+import 'package:delux/views/game.dart';
+import 'package:delux/views/gme.dart';
+import 'package:delux/views/hamper.dart';
+import 'package:delux/views/trip.dart';
+import 'package:delux/views/what_is.dart';
 import 'package:delux/widgets/background_gradient_widget.dart';
 import 'package:delux/widgets/custom_elevated_button.dart';
 import 'package:delux/widgets/footer_widget.dart';
 import 'package:delux/widgets/handler_widget.dart';
 import 'package:delux/widgets/header_widget.dart';
 import 'package:delux/widgets/heading_title_widget.dart';
-import 'package:delux/widgets/how_delux_works_dialog.dart';
 import 'package:delux/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,88 +41,59 @@ class _HomeScreenState extends State<HomeScreen> {
   final PageController _autoPageController = PageController();
 
   final List<String> imageSliders = [
-    'assets/img/1.jpg',
-    'assets/img/2.jpg',
-    'assets/img/3.jpg',
-    'assets/img/4.jpg',
-    'assets/img/5.jpg',
-    'assets/img/6.jpg',
-    'assets/img/7.jpg',
-    'assets/img/9.jpg',
+    'assets/img/1.jpeg',
+    'assets/img/2.jpeg',
+    'assets/img/3.jpeg',
+    'assets/img/4.jpeg',
+    'assets/img/5.jpeg',
+    'assets/img/6.jpeg',
+    'assets/img/7.jpeg',
+    'assets/img/9.jpeg',
   ];
 
   late final List<Widget> headings = [
     const HeadingTitleWidget(
-      first: 'Earning',
-      second: 'From',
-      third: 'The Internet',
-      fourth: 'While',
-      fifth: 'Sitting',
+      first: 'Find',
+      second: 'Love',
+      third: 'That',
+      fourth: 'Feels',
+      fifth: 'Right',
     ),
     const HeadingTitleWidget(
-      first: 'Smart Ways',
-      second: 'To Make',
-      third: 'Money',
-      fourth: 'From',
-      fifth: 'Home',
+      first: 'Connect',
+      second: 'Hearts',
+      third: 'Across',
+      fourth: 'Miles',
+      fifth: 'Easily',
     ),
     const HeadingTitleWidget(
-      first: 'Work',
-      second: 'From',
-      third: 'Anywhere,',
-      fourth: 'Earn',
-      fifth: 'Everywhere',
+      first: 'Love',
+      second: 'Meets',
+      third: 'Surprises',
+      fourth: 'With',
+      fifth: 'Rewards',
     ),
     const HeadingTitleWidget(
-      first: 'Get Paid',
-      second: 'Without',
-      third: 'Leaving',
-      fourth: 'Your',
-      fifth: 'Couch',
+      first: 'From',
+      second: 'Matches',
+      third: 'To',
+      fourth: 'Moments,',
+      fifth: 'Together',
     ),
     const HeadingTitleWidget(
-      first: 'Unlock',
-      second: 'Passive',
-      third: 'Income',
-      fourth: 'Streams',
-      fifth: 'Online',
+      first: 'Real',
+      second: 'Connections',
+      third: 'Built',
+      fourth: 'On',
+      fifth: 'MiAmor',
     ),
   ];
+
   int _currentPage = 0;
   late Timer _timer;
 
   @override
   void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   HeadTagUtil.setTitle('Home | Delux - Earn & Grow Income');
-    //   HeadTagUtil.add("name", "author", "Delux Team");
-    //   HeadTagUtil.add("property", "og:url", "Add og:url");
-    //   HeadTagUtil.setHead(
-    //     title: "Home | Delux - Earn & Grow Income",
-    //     keywords: [
-    //       "Delux",
-    //       "Delux Registration",
-    //       "Delux App",
-    //       "Delux Income",
-    //       "delux coupon",
-    //       "register delux",
-    //       "join delux",
-    //       "about delux",
-    //       "delux telegram",
-    //       "delux tiktok",
-    //       "delux agent",
-    //       "delux agent registration",
-    //       "delux agent registration link",
-    //       "delux.com.ng",
-    //       "delux.com",
-    //       "delux.com.ng registration",
-    //     ],
-    //     description:
-    //         "Delux is a platform that allows you to earn money online effortlessly. Join us today and start your journey towards financial freedom.",
-    //     imageUrl: "/assets/img/icon.png",
-    //     url: "https://deluxregistration.com",
-    //   );
-    // });
     super.initState();
 
     _startAutoSlide();
@@ -136,15 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
         curve: Curves.easeInOut,
       );
     });
-  }
-
-  void _showCenterModal(context, content) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(backgroundColor: Colors.black, content: content);
-      },
-    );
   }
 
   @override
@@ -166,202 +133,94 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const HeaderWidget(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const HeaderWidget(),
 
-                  SizedBox(
-                    height: 130,
-                    child: PageView(
-                      controller: _autoPageController,
-                      children: headings,
-                    ),
+                SizedBox(
+                  height: 130,
+                  child: PageView(
+                    controller: _autoPageController,
+                    children: headings,
                   ),
+                ),
 
-                  // const SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 400,
-                    child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: imageSliders.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.all(10),
-                          width: 350,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(imageSliders[index]),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
+                // const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  height: 350,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: imageSliders.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.all(10),
+                        width: 350,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(imageSliders[index]),
+                            fit: BoxFit.cover,
                           ),
-                        );
-                      },
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Center(
+                  child: SmoothPageIndicator(
+                    controller: _pageController,
+                    count: imageSliders.length,
+                    effect: const ExpandingDotsEffect(
+                      activeDotColor: AppColor.colorThree,
+                      dotColor: Colors.blueGrey,
+                      dotHeight: 10,
+                      dotWidth: 10,
+                      expansionFactor: 4,
+                      spacing: 8,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Center(
-                    child: SmoothPageIndicator(
-                      controller: _pageController,
-                      count: imageSliders.length,
-                      effect: const ExpandingDotsEffect(
-                        activeDotColor: Colors.amber,
-                        dotColor: Colors.grey,
-                        dotHeight: 10,
-                        dotWidth: 10,
-                        expansionFactor: 4,
-                        spacing: 8,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
+                ),
+                const SizedBox(height: 30),
+
+                const WhatIs(),
+                const Gme(),
+                const Game(),
+                const Hamper(),
+                const Trip(),
+
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Register Now!',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Earn from the internet effortlessly! Making money online has never been this easy. Discover seamless ways to boost your income and achieve your financial goals from the comfort of your home. Sign up now and start earning today!",
-                          style: GoogleFonts.robotoFlex(color: Colors.white),
-                        ),
-                        const SizedBox(height: 20),
-                        CustomElevatedButton(
-                          buttonTitle: 'Register Now',
-                          onClick: () {
-                            Get.toNamed('sign-up');
-                            // _showCenterModal(
-                            //   context,
-                            //   GetStartedDialogContent(),
-                            // );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text(
-                      'What is Delux?',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+
+                      child: Image.asset(
+                        'assets/img/1.jpeg',
+
+                        fit: BoxFit.contain, // Maintains image proportions
                       ),
                     ),
                   ),
+                ),
 
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'What is Delux?',
-                                style: TextStyle(
-                                  color: Colors.amber,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    " A system designed with deep insights 🧠 to uphold your happiness 😊 through artificial intelligence 🤖, expertise 🎓, and financial knowledge 💰.",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const Text.rich(
-                          TextSpan(
-                            text: 'At ',
-                            children: [
-                              TextSpan(
-                                text: 'Delux 🎨',
-                                style: TextStyle(
-                                  color: Colors.amber,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-
-                              TextSpan(
-                                text:
-                                    ", we're harnessing creativity to build a new wave of millionaires 💵 and billionaires 🏦. Our mission is to make you happy 😊 and financially stable 💰. We keep the spirit of networking alive 🌐, setting the right standards ✅ and breaking boundaries 🌍. Explore our mouth-watering features 🍽️, accessible to all African countries 🌎.",
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 20),
-                        CustomElevatedButton(
-                          buttonTitle: 'How it works',
-                          onClick: () {
-                            _showCenterModal(
-                              context,
-                              HowDeluxWorksDialog(telegramLink: telegramLink),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                Center(
+                  child: CustomElevatedButton(
+                    buttonTitle: 'Join Us Today!',
+                    onClick: () async {
+                      await util.launchExternalUrl(
+                        HandlerWidget().telegramLink,
+                      );
+                    },
                   ),
-                  const SizedBox(height: 20),
+                ),
+                const SizedBox(height: 20),
 
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-
-                        child: Image.asset(
-                          'assets/img/7.jpg',
-
-                          fit: BoxFit.contain, // Maintains image proportions
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Center(
-                    child: CustomElevatedButton(
-                      buttonTitle: 'Join Us Today!',
-                      onClick: () {
-                        Get.toNamed('sign-up');
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  const FooterWidget(),
-                ],
-              ),
+                const FooterWidget(),
+              ],
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:delux/app/app.color.dart';
 import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
@@ -12,8 +13,8 @@ class CustomElevatedButton extends StatelessWidget {
     super.key,
     required this.buttonTitle,
     required this.onClick,
-    this.buttonColor = Colors.black12,
-    this.textColor = Colors.amber,
+    this.buttonColor = Colors.amber,
+    this.textColor = AppColor.colorThree,
     this.padding,
     this.fontSize,
   });
