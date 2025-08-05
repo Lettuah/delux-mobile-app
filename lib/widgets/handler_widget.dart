@@ -6,7 +6,7 @@ import "package:get/get.dart";
 class HandlerWidget extends StatelessWidget {
   HandlerWidget({super.key});
 
-  final String telegramLink = "https://t.me/Officialmiamor";
+  final String telegramLink = "https://t.me/m/KDijDeyPMDI0";
   final String tiktokLink = "https://www.tiktok.com/@keenahmoney";
   final String whatsappLink = "https://wa.me/message/TGJDTR4WXXGKK1";
   final UtilityFunctions util = Get.put(UtilityFunctions());

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:delux/app/app.color.dart';
 import 'package:delux/utility_functions.dart';
+import 'package:delux/views/earning.dart';
 import 'package:delux/views/game.dart';
 import 'package:delux/views/gme.dart';
 import 'package:delux/views/hamper.dart';
@@ -188,6 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const WhatIs(),
                 const Gme(),
                 const Game(),
+                const Earning(),
                 const Hamper(),
                 const Trip(),
 
